@@ -106,3 +106,10 @@ We list some common ones here.
    everyone will be *guaranteed* 256M of memory, and most likely will have access
    to 1G of memory. But they can't use more than 1G of memory - their kernels and
    processes will die if they use more than this.
+   
+## Environment
+
+The default environment for all hubs in the `low-touch-hubs` repository is defined
+[in this github folder](https://github.com/2i2c-org/low-touch-hubs/tree/master/image).
+Currently, if users wish for new packages etc to be installed, they should do so
+via asking for changes through issues, and a 2i2c person updates this folder.
