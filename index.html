@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hubs via hubs.yaml &#8212; lowtouch-hubs  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="https://platform.twitter.com/widgets.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="hubs-via-hubs-yaml">
+<h1>Hubs via hubs.yaml<a class="headerlink" href="#hubs-via-hubs-yaml" title="Permalink to this headline">¶</a></h1>
+<p>All hub configuration is in <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code>. You can add a new hub by adding
+an entry there, and pushing that to github.</p>
+<blockquote class="twitter-tweet" ><a href="https://twitter.com/jayrosen_nyu/status/1312471236518182912">https://twitter.com/jayrosen_nyu/status/1312471236518182912</a></blockquote><a class="twitter-timeline" href="https://twitter.com/twitterapi" data-widget-id="https://twitter.com/jayrosen_nyu">
+    Tweets by @twitterapi
+    </a><div class="section" id="hub-configuration-reference">
+<h2>Hub configuration reference<a class="headerlink" href="#hub-configuration-reference" title="Permalink to this headline">¶</a></h2>
+<p>Each hub is a dictionary that can consist of the following keys:</p>
+<ol>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p>
+<p>A string that uniquely identifies this hub</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">domain</span></code></p>
+<p>Domain this hub should be available at. Currently, must be a subdomain
+of a domain that has been pre-configured to point to our cluster. Currently,
+that is <code class="docutils literal notranslate"><span class="pre">.pilot.2i2c.cloud</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auth0</span></code></p>
+<p>We use <a class="reference external" href="https://auth0.com/">auth0</a> for authentication, and it supports
+many <a class="reference external" href="https://auth0.com/docs/identityproviders">connections</a>. Currently,
+only <code class="docutils literal notranslate"><span class="pre">connector</span></code> property is supported - see section on <em>Authentication</em>
+for more information.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code></p>
+<p>Any arbitrary <a class="reference external" href="https://z2jh.jupyter.org">zero to jupyterhub</a> configuration
+can be passed here. Most common is auth setup, memory / CPU restrictions,
+and max number of active users.</p>
+<p>All zero to jupyterhub config needs to be under a <code class="docutils literal notranslate"><span class="pre">jupyterhub</span></code> key. For example,
+if you wanna set the memory limit for a hub, you would use:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span>
+  <span class="nt">jupyterhub</span><span class="p">:</span>
+    <span class="nt">singleuser</span><span class="p">:</span>
+      <span class="nt">memory</span><span class="p">:</span>
+        <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1G</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://auth0.com">auth0</a> provides authentication for all hubs here. It can
+be configured with many different <a class="reference external" href="https://auth0.com/docs/identityproviders">connections</a>
+that users can authenticate with - such as Google, GitHub, etc.</p>
+<p>So we want to manage authentication by:</p>
+<ol>
+<li><p>Explicitly listing the type of connection we want for this hub, via
+<code class="docutils literal notranslate"><span class="pre">auth0.connection</span></code>. Currently common ones are <code class="docutils literal notranslate"><span class="pre">google-oauth2</span></code> for Google &amp;
+<code class="docutils literal notranslate"><span class="pre">github</span></code> for GitHub. <em>Users</em> of the hub will use this method to log in to
+the hub.</p>
+<p>You can set the auth0 connector for a hub with:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">auth0</span><span class="p">:</span>
+   <span class="nt">connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">google-oauth2</span>
+</pre></div>
+</div>
+<p>Theoretically, every provider in <a class="reference external" href="https://auth0.com/docs/connections/identity-providers-social">this list</a>
+is supported. However, we’ve currently only tested this with Google
+(<code class="docutils literal notranslate"><span class="pre">google-oauth2</span></code>) and GitHub (<code class="docutils literal notranslate"><span class="pre">github</span></code>)</p>
+</li>
+<li><p>Explicitly list <em>admin users</em> for a given hub. These admin users will be the
+only ones allowed to log in to begin with. They can use the JupyterHub
+admin interface (available from their hub control panel) to explicitly allow
+more users into the hub. This way, we don’t need to be involved in explicitly
+allowing users into hubs.</p>
+<p>In the admin interface, admin users can add users via a username appropriate
+for the auth connector used. For GitHub, it’s the username. For Google Auth,
+it’s the email address.</p>
+<p>You can set the admin interfaces for a hub like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span>
+  <span class="nt">jupyterhub</span><span class="p">:</span>
+    <span class="nt">auth</span><span class="p">:</span>
+      <span class="c1"># will be renamed allowedlist in future JupyterHub</span>
+      <span class="nt">whitelist</span><span class="p">:</span>
+        <span class="nt">users</span><span class="p">:</span>
+          <span class="c1"># WARNING: THESE USER LISTS MUST MATCH (for now)</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user1@gmail.com</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user2@gmail.com</span>
+      <span class="nt">admin</span><span class="p">:</span>
+        <span class="nt">users</span><span class="p">:</span>
+          <span class="c1"># WARNING: THESE USER LISTS MUST MATCH (for now)</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user1@gmail.com</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user2@gmail.com</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="default-options">
+<h2>Default options<a class="headerlink" href="#default-options" title="Permalink to this headline">¶</a></h2>
+<p>Part of being ‘low touch’ is to provide default options that we think might
+work for most people. These are specified in <code class="docutils literal notranslate"><span class="pre">hub/values.yaml</span></code> in the repository.
+We list some common ones here.</p>
+<ol class="simple">
+<li><p><strong>Memory Limit</strong> of 1G per student, with a guarantee of 256M. This means that
+everyone will be <em>guaranteed</em> 256M of memory, and most likely will have access
+to 1G of memory. But they can’t use more than 1G of memory - their kernels and
+processes will die if they use more than this.</p></li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">lowtouch-hubs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, 2i2c.org.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
