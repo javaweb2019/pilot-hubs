@@ -13,7 +13,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
-    <script src="https://platform.twitter.com/widgets.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -36,9 +35,7 @@
 <h1>Hubs via hubs.yaml<a class="headerlink" href="#hubs-via-hubs-yaml" title="Permalink to this headline">¶</a></h1>
 <p>All hub configuration is in <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code>. You can add a new hub by adding
 an entry there, and pushing that to github.</p>
-<blockquote class="twitter-tweet" ><a href="https://twitter.com/jayrosen_nyu/status/1312471236518182912">https://twitter.com/jayrosen_nyu/status/1312471236518182912</a></blockquote><a class="twitter-timeline" href="https://twitter.com/twitterapi" data-widget-id="https://twitter.com/jayrosen_nyu">
-    Tweets by @twitterapi
-    </a><div class="section" id="hub-configuration-reference">
+<div class="section" id="hub-configuration-reference">
 <h2>Hub configuration reference<a class="headerlink" href="#hub-configuration-reference" title="Permalink to this headline">¶</a></h2>
 <p>Each hub is a dictionary that can consist of the following keys:</p>
 <ol>
@@ -85,7 +82,7 @@ that users can authenticate with - such as Google, GitHub, etc.</p>
 the hub.</p>
 <p>You can set the auth0 connector for a hub with:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">auth0</span><span class="p">:</span>
-   <span class="nt">connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">google-oauth2</span>
+   <span class="nt">connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">google-oauth2</span> 
 </pre></div>
 </div>
 <p>Theoretically, every provider in <a class="reference external" href="https://auth0.com/docs/connections/identity-providers-social">this list</a>
@@ -130,6 +127,27 @@ We list some common ones here.</p>
 everyone will be <em>guaranteed</em> 256M of memory, and most likely will have access
 to 1G of memory. But they can’t use more than 1G of memory - their kernels and
 processes will die if they use more than this.</p></li>
+</ol>
+</div>
+<div class="section" id="updating-environment">
+<h2>Updating environment<a class="headerlink" href="#updating-environment" title="Permalink to this headline">¶</a></h2>
+<p>The user environments is specified via a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, under <code class="docutils literal notranslate"><span class="pre">images/user</span></code> in
+the git repository. Currently there is no automated image building - so you will
+have to manually build &amp; push it after making a change.</p>
+<ol>
+<li><p>Install pre-requisites:</p>
+<p>a. Docker
+b. A Python virtual environment. Install <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> into it.
+c. The <code class="docutils literal notranslate"><span class="pre">gcloud</span></code> tool, authenticated to the <code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code> project.
+You need to run <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">auth</span> <span class="pre">configure-docker</span> <span class="pre">us-central1-docker.pkg.dev</span></code>
+once as well.</p>
+</li>
+<li><p>Make the changes you need to make to the environment, and git commit it.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">build.py</span></code>. This will build the image and push it to registry.
+It will tell you what the generated image tag is.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">jupyterhub.singleuser.image.tag</span></code> in <code class="docutils literal notranslate"><span class="pre">hub/values.yaml</span></code> with this tag.</p></li>
+<li><p>Make a commit, make a PR and merge to master! This will deploy all the hubs
+with the new image</p></li>
 </ol>
 </div>
 </div>
