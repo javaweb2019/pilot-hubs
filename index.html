@@ -285,8 +285,8 @@ You need to run <code class="docutils literal notranslate"><span class="pre">gcl
 once as well.</p>
 </li>
 <li><p>Make the changes you need to make to the environment, and git commit it.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">build.py</span></code>. This will build the image and push it to registry.
-It will tell you what the generated image tag is.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">deploy.py</span> <span class="pre">build</span></code>. This will build the image and push it to
+registry. It will tell you what the generated image tag is.</p></li>
 <li><p>Update <code class="docutils literal notranslate"><span class="pre">jupyterhub.singleuser.image.tag</span></code> in <code class="docutils literal notranslate"><span class="pre">hub/values.yaml</span></code> with this tag.</p></li>
 <li><p>Make a commit, make a PR and merge to master! This will deploy all the hubs
 with the new image</p></li>
