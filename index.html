@@ -123,6 +123,16 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-we-plan-to-use-this-repository">
+   How we plan to use this repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cluster-configuration-reference">
+   Cluster configuration reference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#hub-configuration-reference">
    Hub configuration reference
   </a>
@@ -147,6 +157,16 @@
    Updating environment
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-the-hub-login-page">
+   Configuring the hub login page
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#delete-a-hub">
+   Delete a hub
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -163,15 +183,41 @@
 <p>This is documentation for the 2i2c Pilot Hubs deployment infrastructure. The goal of this stack is to automatically deploy JupyterHubs in the cloud from a single <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> configuration file.</p>
 <p>All hub configuration is in <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code>. You can add a new hub by adding
 an entry there, and pushing that to github.</p>
+<div class="section" id="how-we-plan-to-use-this-repository">
+<h2>How we plan to use this repository<a class="headerlink" href="#how-we-plan-to-use-this-repository" title="Permalink to this headline">¶</a></h2>
+<p>Currently, most user-facing documentation for the Hubs Pilot is at <a class="reference external" href="https://2i2c.org/pilot/">2i2c.org/pilot</a>. We’ll use the following repositories for managing users and maintenance of these hubs:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/2i2c-org/pilot">github.com/2i2c-org/pilot</a> - point-of-contact with users. User documentation. Questions, requests, problems, etc.</p></li>
+<li><p><a class="reference external" href="https://github.com/2i2c-org/pilot-hubs">github.com/2i2c-org/pilot-hubs</a> - Hub deployment information, issues for maintenance and technical enhancements on the hubs.</p></li>
+</ul>
+<p>We’ve asked users to submit any questions, problems, requests, etc as issues via <a class="reference external" href="https://github.com/2i2c-org/pilot">github.com/2i2c-org/pilot</a> using issue templates. <strong>Hub operators</strong> should triage these issues, and surface any that require ongoing attention as issues in the <a class="reference external" href="https://github.com/2i2c-org/pilot-hubs">github.com/2i2c-org/pilot-hubs</a> repository. This includes technical problems that need fixes, as well as requests such as environment updates.</p>
+<p>2i2c Hub Operators as well as Hub Architects shall use this repository to perform hub updates and maintenance in order to resolve these issues. They’ll also use this repository to create new hubs for communities that have reached out via <span class="xref myst">https://2i2c.org/pilot</span>.</p>
+</div>
+<div class="section" id="cluster-configuration-reference">
+<h2>Cluster configuration reference<a class="headerlink" href="#cluster-configuration-reference" title="Permalink to this headline">¶</a></h2>
+<p>At the top level of <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> is a list of <strong>clusters</strong>. Each cluster is a cloud deployment (for example, a Google project) that can have one or more hubs deployed inside it.</p>
+<p>Clusters have some basic configurability:</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>A string that uniquely identifies this cluster</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">image_repo</span></code></dt><dd><p>The base <strong>user image</strong> that all hubs will use in this cluster.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">provider</span></code></dt><dd><p>The cloud provider for this cluster (e.g. <code class="docutils literal notranslate"><span class="pre">gcp</span></code>).</p>
+</dd>
+</dl>
+</div>
 <div class="section" id="hub-configuration-reference">
 <h2>Hub configuration reference<a class="headerlink" href="#hub-configuration-reference" title="Permalink to this headline">¶</a></h2>
-<p>Each hub is a dictionary that can consist of the following keys:</p>
+<p><code class="docutils literal notranslate"><span class="pre">clusters.hubs:</span></code> is a list of hubs to be deployed in each cluster.
+Each hub is a dictionary that can consist of the following keys:</p>
 <dl class="simple myst">
 <dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>A string that uniquely identifies this hub</p>
 </dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cluster</span></code></dt><dd><p>The cluster where this hub will be deployed.</p>
+</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">domain</span></code></dt><dd><p>Domain this hub should be available at. Currently, must be a subdomain
 of a domain that has been pre-configured to point to our cluster. Currently,
-that is <code class="docutils literal notranslate"><span class="pre">.pilot.2i2c.cloud</span></code></p>
+that is <code class="docutils literal notranslate"><span class="pre">.&lt;clustername&gt;.2i2c.cloud</span></code></p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">auth0</span></code></dt><dd><p>We use <a class="reference external" href="https://auth0.com/">auth0</a> for authentication, and it supports
 many <a class="reference external" href="https://auth0.com/docs/identityproviders">connections</a>. Currently,
@@ -181,12 +227,6 @@ for more information.</p>
 <dt><code class="docutils literal notranslate"><span class="pre">config.jupyterhub</span></code></dt><dd><p>Any arbitrary <a class="reference external" href="https://z2jh.jupyter.org">zero to jupyterhub</a> configuration
 can be passed here. Most common is auth setup, memory / CPU restrictions,
 and max number of active users. See <a class="reference internal" href="#config-jupyterhub"><span class="std std-ref">Configuring each JupyterHub</span></a> for more info.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">org_name</span></code></dt><dd><p>The name of the organization, as displayed in a readable text.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">org_logo</span></code></dt><dd><p>A URL to the logo of the organization.</p>
-</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">org_url</span></code></dt><dd><p>A URL to a website for the organization.</p>
 </dd>
 </dl>
 </div>
@@ -290,6 +330,23 @@ registry. It will tell you what the generated image tag is.</p></li>
 <li><p>Update <code class="docutils literal notranslate"><span class="pre">jupyterhub.singleuser.image.tag</span></code> in <code class="docutils literal notranslate"><span class="pre">hub/values.yaml</span></code> with this tag.</p></li>
 <li><p>Make a commit, make a PR and merge to master! This will deploy all the hubs
 with the new image</p></li>
+</ol>
+</div>
+<div class="section" id="configuring-the-hub-login-page">
+<h2>Configuring the hub login page<a class="headerlink" href="#configuring-the-hub-login-page" title="Permalink to this headline">¶</a></h2>
+<p>Each Hub deployed in a cluster has a collection of metadata about who it is deployed for, and who is responsible for running it. This is used to generate the <strong>log-in page</strong> for each hub and tailor it for the community.</p>
+<p>For an example, see <a class="reference external" href="https://staging.pilot.2i2c.cloud/hub/login">the log-in page of the staging hub</a>.</p>
+<p>The log-in pages are built with <a class="reference external" href="https://github.com/2i2c-org/pilot-homepage">the base template at this repository</a>. Values are inserted into each template based on each hub configuration.</p>
+<p>You may customize the configuration for a hub’s homepage at <code class="docutils literal notranslate"><span class="pre">config.jupyterhub.homepage.templateVars</span></code>. Changing these values for a hub will make that hub’s landing page update automatically. We recommend <a class="reference external" href="https://github.com/2i2c-org/pilot-hubs/blob/master/hubs.yaml">using the <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> file as a reference</a>. Copy the configuration from another hub, and then modify the contents to fit the new hub that is being configured.</p>
+</div>
+<div class="section" id="delete-a-hub">
+<h2>Delete a hub<a class="headerlink" href="#delete-a-hub" title="Permalink to this headline">¶</a></h2>
+<p>If you’d like to delete a hub, there are a few steps that we need to take:</p>
+<ol class="simple">
+<li><p><strong>Backup the hub database</strong>. Backup the <code class="docutils literal notranslate"><span class="pre">jupyterhub.sqlite</span></code> db off the hub.</p></li>
+<li><p><strong>Backup the home directory contents</strong>. Especially if we think that users will want this information in the future (or if we plan to re-deploy a hub elsewhere).</p></li>
+<li><p><strong>Delete the Helm namespace</strong>. Run <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">-n</span> <span class="pre">&lt;hub-name&gt;</span> <span class="pre">delete</span> <span class="pre">&lt;hub-name&gt;</span></code>.</p></li>
+<li><p><strong>Delete our Authentication entry</strong>. If the hub hasn’t been recreated anywhere, remove the entry from <code class="docutils literal notranslate"><span class="pre">auth0.com</span></code></p></li>
 </ol>
 </div>
 </div>
