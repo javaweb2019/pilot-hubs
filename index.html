@@ -167,6 +167,11 @@
    Delete a hub
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-the-hub-grafana-dashboards">
+   Access the Hub Grafana Dashboards
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -243,8 +248,8 @@ This should be a valid <a class="reference external" href="https://z2jh.jupyter.
 </div>
 <p>Here are a few reference pages for JupyterHub Kubernetes configuration:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/customizing/user-environment.html#user-environment" title="(in Zero to JupyterHub with Kubernetes v0.0.1)"><span>Customizing User Environment</span></a></p></li>
-<li><p><a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/customizing/user-resources.html#user-resources" title="(in Zero to JupyterHub with Kubernetes v0.0.1)"><span>Customizing User Resources</span></a></p></li>
+<li><p><a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/jupyterhub/customizing/user-environment.html#user-environment" title="(in Zero to JupyterHub with Kubernetes v0.0.1)"><span>Customizing User Environment</span></a></p></li>
+<li><p><a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/jupyterhub/customizing/user-resources.html#user-resources" title="(in Zero to JupyterHub with Kubernetes v0.0.1)"><span>Customizing User Resources</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="authentication">
@@ -348,6 +353,13 @@ with the new image</p></li>
 <li><p><strong>Delete the Helm namespace</strong>. Run <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">-n</span> <span class="pre">&lt;hub-name&gt;</span> <span class="pre">delete</span> <span class="pre">&lt;hub-name&gt;</span></code>.</p></li>
 <li><p><strong>Delete our Authentication entry</strong>. If the hub hasn’t been recreated anywhere, remove the entry from <code class="docutils literal notranslate"><span class="pre">auth0.com</span></code></p></li>
 </ol>
+</div>
+<div class="section" id="access-the-hub-grafana-dashboards">
+<h2>Access the Hub Grafana Dashboards<a class="headerlink" href="#access-the-hub-grafana-dashboards" title="Permalink to this headline">¶</a></h2>
+<p>Each 2i2c Hub is set up with <a class="reference external" href="https://prometheus.io/">a Prometheus server</a> to generate metrics and information about activity on the hub, and each cluster of hubs has a <a class="reference external" href="https://grafana.com/">Grafana deployment</a> to ingest and visualize this data.</p>
+<p>The Grafana for each cluster can be accessed at <code class="docutils literal notranslate"><span class="pre">grafana.&lt;cluster-name&gt;.2i2c.cloud</span></code>.
+For example, the pilot hubs are accessible at <code class="docutils literal notranslate"><span class="pre">grafana.pilot.2i2c.cloud</span></code>. You’ll need
+a username and password to access each one. Ask one of the 2i2c team members for access.</p>
 </div>
 </div>
 
