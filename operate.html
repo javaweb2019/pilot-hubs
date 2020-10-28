@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operating the hubs &#8212; 2i2c Pilot Hubs Infrastructure  documentation</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Incident reports" href="incidents/index.html" />
+    <link rel="prev" title="Cluster configuration" href="configure.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">2i2c Pilot Hubs Infrastructure  documentation</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="configure.html">
+   Cluster configuration
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Operating the hubs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="incidents/index.html">
+   Incident reports
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/operate.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/2i2c-org/pilot-hubs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/2i2c-org/pilot-hubs/issues/new?title=Issue%20on%20page%20%2Foperate.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gain-kubectl-access-to-a-hub">
+   Gain
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     kubectl
+    </span>
+   </code>
+   access to a hub
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#delete-a-hub">
+   Delete a hub
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#access-the-hub-grafana-dashboards">
+   Access the Hub Grafana Dashboards
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="operating-the-hubs">
+<h1>Operating the hubs<a class="headerlink" href="#operating-the-hubs" title="Permalink to this headline">¶</a></h1>
+<p>Information about operating the hubs, debugging problems, and performing common actions.</p>
+<div class="section" id="gain-kubectl-access-to-a-hub">
+<h2>Gain <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> access to a hub<a class="headerlink" href="#gain-kubectl-access-to-a-hub" title="Permalink to this headline">¶</a></h2>
+<p>Each of the hubs in the 2i2c Pilot runs on Google Cloud Platform and Kubernetes. To access the Kubernetes deployments (in order to inspect them or make changes), use the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> command line tool.</p>
+<p>In order to get this tool and ensure that it works, first ensure <strong>ensure your Google account is added to the <code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code> hubs project.</strong> If you aren’t sure, ask one of the hub administrators to determine if this is the case.</p>
+<p>Next, go to the Google Cloud Kubernetes configuration page for this project (at the following URL):</p>
+<p><a class="reference external" href="https://console.cloud.google.com/kubernetes/list?project=two-eye-two-see">https://console.cloud.google.com/kubernetes/list?project=two-eye-two-see</a>`</p>
+<p>Click on <code class="docutils literal notranslate"><span class="pre">Connect</span></code>, as seen in the figure below.</p>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-body docutils">
+<div class="figure align-default">
+<img alt="_images/gcp-k8s-dashboard.png" src="_images/gcp-k8s-dashboard.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-body docutils">
+<div class="figure align-default">
+<img alt="_images/gcp-run-in-shell.png" src="_images/gcp-run-in-shell.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This will spin up an interactive cloud shell where you have <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> access to the <code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code> hub infrastructure.</p>
+<div class="tip admonition">
+<p class="admonition-title"> Working locally with the CLI</p>
+<p>If you’d like to work locally, you may also install the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> and <code class="docutils literal notranslate"><span class="pre">helm</span></code> CLIs locally. To do so, follow the <a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/kubernetes/google/step-zero-gcp.html#kubernetes-on-google-cloud-gke">steps from the Z2JH guide</a> (begin with “choose a terminal”). When that is done, copy and run the “Command-line access” command that is shown on the “Connect to the cluster” page. It is something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcloud</span> <span class="n">container</span> <span class="n">clusters</span> <span class="n">get</span><span class="o">-</span><span class="n">credentials</span> <span class="n">low</span><span class="o">-</span><span class="n">touch</span><span class="o">-</span><span class="n">hubs</span><span class="o">-</span><span class="n">cluster</span> <span class="o">--</span><span class="n">region</span> <span class="n">us</span><span class="o">-</span><span class="n">central1</span> <span class="o">--</span><span class="n">project</span> <span class="n">two</span><span class="o">-</span><span class="n">eye</span><span class="o">-</span><span class="n">two</span><span class="o">-</span><span class="n">see</span>
+</pre></div>
+</div>
+<p>You may need to authenticate your local CLI with Google Cloud first with <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">auth</span> <span class="pre">login</span></code>.</p>
+</div>
+</div>
+<div class="section" id="delete-a-hub">
+<h2>Delete a hub<a class="headerlink" href="#delete-a-hub" title="Permalink to this headline">¶</a></h2>
+<p>If you’d like to delete a hub, there are a few steps that we need to take:</p>
+<ol class="simple">
+<li><p><strong>Backup the hub database</strong>. Backup the <code class="docutils literal notranslate"><span class="pre">jupyterhub.sqlite</span></code> db off the hub.</p></li>
+<li><p><strong>Backup the home directory contents</strong>. Especially if we think that users will want this information in the future (or if we plan to re-deploy a hub elsewhere).</p></li>
+<li><p><strong>Delete the Helm namespace</strong>. Run <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">-n</span> <span class="pre">&lt;hub-name&gt;</span> <span class="pre">delete</span> <span class="pre">&lt;hub-name&gt;</span></code>.</p></li>
+<li><p><strong>Delete our Authentication entry</strong>. If the hub hasn’t been recreated anywhere, remove the entry from <code class="docutils literal notranslate"><span class="pre">auth0.com</span></code></p></li>
+</ol>
+</div>
+<div class="section" id="access-the-hub-grafana-dashboards">
+<h2>Access the Hub Grafana Dashboards<a class="headerlink" href="#access-the-hub-grafana-dashboards" title="Permalink to this headline">¶</a></h2>
+<p>Each 2i2c Hub is set up with <a class="reference external" href="https://prometheus.io/">a Prometheus server</a> to generate metrics and information about activity on the hub, and each cluster of hubs has a <a class="reference external" href="https://grafana.com/">Grafana deployment</a> to ingest and visualize this data.</p>
+<p>The Grafana for each cluster can be accessed at <code class="docutils literal notranslate"><span class="pre">grafana.&lt;cluster-name&gt;.2i2c.cloud</span></code>.
+For example, the pilot hubs are accessible at <code class="docutils literal notranslate"><span class="pre">grafana.pilot.2i2c.cloud</span></code>. You’ll need
+a username and password to access each one. Ask one of the 2i2c team members for access.</p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="configure.html" title="previous page">Cluster configuration</a>
+    <a class='right-next' id="next-link" href="incidents/index.html" title="next page">Incident reports</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By 2i2c.org<br/>
+        
+            &copy; Copyright 2020, 2i2c.org.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

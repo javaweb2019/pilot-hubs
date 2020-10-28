@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cluster configuration &#8212; 2i2c Pilot Hubs Infrastructure  documentation</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Operating the hubs" href="operate.html" />
+    <link rel="prev" title="2i2c Pilot Hubs Infrastructure" href="index.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">2i2c Pilot Hubs Infrastructure  documentation</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Cluster configuration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="operate.html">
+   Operating the hubs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="incidents/index.html">
+   Incident reports
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/configure.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/2i2c-org/pilot-hubs"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/2i2c-org/pilot-hubs/issues/new?title=Issue%20on%20page%20%2Fconfigure.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cluster-configuration-reference">
+   Cluster configuration reference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hub-configuration-reference">
+   Hub configuration reference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-each-jupyterhub">
+   Configuring each JupyterHub
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#authentication">
+   Authentication
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-options">
+   Default options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-environment">
+   Updating environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-the-hub-login-page">
+   Configuring the hub login page
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cluster-configuration">
+<h1>Cluster configuration<a class="headerlink" href="#cluster-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Information about how to customize and configure each of the cluster (or individual hubs).</p>
+<div class="section" id="cluster-configuration-reference">
+<h2>Cluster configuration reference<a class="headerlink" href="#cluster-configuration-reference" title="Permalink to this headline">¶</a></h2>
+<p>At the top level of <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> is a list of <strong>clusters</strong>. Each cluster is a cloud deployment (for example, a Google project) that can have one or more hubs deployed inside it.</p>
+<p>Clusters have some basic configurability:</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>A string that uniquely identifies this cluster</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">image_repo</span></code></dt><dd><p>The base <strong>user image</strong> that all hubs will use in this cluster.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">provider</span></code></dt><dd><p>The cloud provider for this cluster (e.g. <code class="docutils literal notranslate"><span class="pre">gcp</span></code>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="hub-configuration-reference">
+<h2>Hub configuration reference<a class="headerlink" href="#hub-configuration-reference" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">clusters.hubs:</span></code> is a list of hubs to be deployed in each cluster.
+Each hub is a dictionary that can consist of the following keys:</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>A string that uniquely identifies this hub</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cluster</span></code></dt><dd><p>The cluster where this hub will be deployed.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">domain</span></code></dt><dd><p>Domain this hub should be available at. Currently, must be a subdomain
+of a domain that has been pre-configured to point to our cluster. Currently,
+that is <code class="docutils literal notranslate"><span class="pre">.&lt;clustername&gt;.2i2c.cloud</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">auth0</span></code></dt><dd><p>We use <a class="reference external" href="https://auth0.com/">auth0</a> for authentication, and it supports
+many <a class="reference external" href="https://auth0.com/docs/identityproviders">connections</a>. Currently,
+only <code class="docutils literal notranslate"><span class="pre">connector</span></code> property is supported - see section on <em>Authentication</em>
+for more information.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">config.jupyterhub</span></code></dt><dd><p>Any arbitrary <a class="reference external" href="https://z2jh.jupyter.org">zero to jupyterhub</a> configuration
+can be passed here. Most common is auth setup, memory / CPU restrictions,
+and max number of active users. See <a class="reference internal" href="#config-jupyterhub"><span class="std std-ref">Configuring each JupyterHub</span></a> for more info.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="configuring-each-jupyterhub">
+<span id="config-jupyterhub"></span><h2>Configuring each JupyterHub<a class="headerlink" href="#configuring-each-jupyterhub" title="Permalink to this headline">¶</a></h2>
+<p>Each JupyterHub can use its own configuration via the <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> file. This configuration exists under <code class="docutils literal notranslate"><span class="pre">config.jupyterhub</span></code>.
+This should be a valid <a class="reference external" href="https://z2jh.jupyter.org">Zero to JupyterHub</a> configuration. For example, to set a custom memory limit for a hub, you would use:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span>
+   <span class="nt">jupyterhub</span><span class="p">:</span>
+    <span class="nt">singleuser</span><span class="p">:</span>
+       <span class="nt">memory</span><span class="p">:</span>
+          <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1G</span>
+</pre></div>
+</div>
+<p>Here are a few reference pages for JupyterHub Kubernetes configuration:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/jupyterhub/customizing/user-environment.html#user-environment" title="(in Zero to JupyterHub with Kubernetes v0.0.1)"><span>Customizing User Environment</span></a></p></li>
+<li><p><a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/jupyterhub/customizing/user-resources.html#user-resources" title="(in Zero to JupyterHub with Kubernetes v0.0.1)"><span>Customizing User Resources</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://auth0.com">auth0</a> provides authentication for all hubs here. It can
+be configured with many different <a class="reference external" href="https://auth0.com/docs/identityproviders">connections</a>
+that users can authenticate with - such as Google, GitHub, etc.</p>
+<p>So we want to manage authentication by:</p>
+<ol>
+<li><p>Explicitly listing the type of connection we want for this hub, via
+<code class="docutils literal notranslate"><span class="pre">auth0.connection</span></code>. Currently common ones are <code class="docutils literal notranslate"><span class="pre">google-oauth2</span></code> for Google &amp;
+<code class="docutils literal notranslate"><span class="pre">github</span></code> for GitHub. <em>Users</em> of the hub will use this method to log in to
+the hub.</p>
+<p>You can set the auth0 connector for a hub with:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">auth0</span><span class="p">:</span>
+   <span class="nt">connection</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">google-oauth2</span>
+</pre></div>
+</div>
+<p>Theoretically, every provider in <a class="reference external" href="https://auth0.com/docs/connections/identity-providers-social">this list</a>
+is supported. However, we’ve currently only tested this with Google
+(<code class="docutils literal notranslate"><span class="pre">google-oauth2</span></code>) and GitHub (<code class="docutils literal notranslate"><span class="pre">github</span></code>)</p>
+</li>
+<li><p>Explicitly list <em>admin users</em> for a given hub. These admin users will be the
+only ones allowed to log in to begin with. They can use the JupyterHub
+admin interface (available from their hub control panel) to explicitly allow
+more users into the hub. This way, we don’t need to be involved in explicitly
+allowing users into hubs.</p>
+<p>In the admin interface, admin users can add users via a username appropriate
+for the auth connector used. For GitHub, it’s the username. For Google Auth,
+it’s the email address.</p>
+<p>You can set the admin interfaces for a hub like this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span>
+  <span class="nt">jupyterhub</span><span class="p">:</span>
+    <span class="nt">auth</span><span class="p">:</span>
+      <span class="c1"># will be renamed allowedlist in future JupyterHub</span>
+      <span class="nt">whitelist</span><span class="p">:</span>
+        <span class="nt">users</span><span class="p">:</span>
+          <span class="c1"># WARNING: THESE USER LISTS MUST MATCH (for now)</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user1@gmail.com</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user2@gmail.com</span>
+      <span class="nt">admin</span><span class="p">:</span>
+        <span class="nt">users</span><span class="p">:</span>
+          <span class="c1"># WARNING: THESE USER LISTS MUST MATCH (for now)</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user1@gmail.com</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user2@gmail.com</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition">
+<p class="admonition-title"> Switching auth</p>
+<p>Switching authentication for a pre-existing hub will simply create new usernames. Any pre-existing users will no longer be able to access their accounts (although administrators will be able to do so). If you have pre-existing users and want to switch the hub authentication, rename the users to the new auth pattern (e.g. convert github handles to emails).</p>
+</div>
+</div>
+<div class="section" id="default-options">
+<h2>Default options<a class="headerlink" href="#default-options" title="Permalink to this headline">¶</a></h2>
+<p>Part of being ‘low touch’ is to provide default options that we think might
+work for most people. These are specified in <code class="docutils literal notranslate"><span class="pre">hub/values.yaml</span></code> in the repository.
+We list some common ones here.</p>
+<ol class="simple">
+<li><p><strong>Memory Limit</strong> of 1G per student, with a guarantee of 256M. This means that
+everyone will be <em>guaranteed</em> 256M of memory, and most likely will have access
+to 1G of memory. But they can’t use more than 1G of memory - their kernels and
+processes will die if they use more than this.</p></li>
+</ol>
+</div>
+<div class="section" id="updating-environment">
+<h2>Updating environment<a class="headerlink" href="#updating-environment" title="Permalink to this headline">¶</a></h2>
+<p>The user environments is specified via a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, under <code class="docutils literal notranslate"><span class="pre">images/user</span></code> in
+the git repository. Currently there is no automated image building - so you will
+have to manually build &amp; push it after making a change.</p>
+<ol>
+<li><p>Install pre-requisites:</p>
+<p>a. Docker
+b. A Python virtual environment. Install <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> into it.
+c. The <code class="docutils literal notranslate"><span class="pre">gcloud</span></code> tool, authenticated to the <code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code> project.
+You need to run <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">auth</span> <span class="pre">configure-docker</span> <span class="pre">us-central1-docker.pkg.dev</span></code>
+once as well.</p>
+</li>
+<li><p>Make the changes you need to make to the environment, and git commit it.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">deploy.py</span> <span class="pre">build</span></code>. This will build the image and push it to
+registry. It will tell you what the generated image tag is.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">jupyterhub.singleuser.image.tag</span></code> in <code class="docutils literal notranslate"><span class="pre">hub/values.yaml</span></code> with this tag.</p></li>
+<li><p>Make a commit, make a PR and merge to master! This will deploy all the hubs
+with the new image</p></li>
+</ol>
+</div>
+<div class="section" id="configuring-the-hub-login-page">
+<h2>Configuring the hub login page<a class="headerlink" href="#configuring-the-hub-login-page" title="Permalink to this headline">¶</a></h2>
+<p>Each Hub deployed in a cluster has a collection of metadata about who it is deployed for, and who is responsible for running it. This is used to generate the <strong>log-in page</strong> for each hub and tailor it for the community.</p>
+<p>For an example, see <a class="reference external" href="https://staging.pilot.2i2c.cloud/hub/login">the log-in page of the staging hub</a>.</p>
+<p>The log-in pages are built with <a class="reference external" href="https://github.com/2i2c-org/pilot-homepage">the base template at this repository</a>. Values are inserted into each template based on each hub configuration.</p>
+<p>You may customize the configuration for a hub’s homepage at <code class="docutils literal notranslate"><span class="pre">config.jupyterhub.homepage.templateVars</span></code>. Changing these values for a hub will make that hub’s landing page update automatically. We recommend <a class="reference external" href="https://github.com/2i2c-org/pilot-hubs/blob/master/hubs.yaml">using the <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> file as a reference</a>. Copy the configuration from another hub, and then modify the contents to fit the new hub that is being configured.</p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">2i2c Pilot Hubs Infrastructure</a>
+    <a class='right-next' id="next-link" href="operate.html" title="next page">Operating the hubs</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By 2i2c.org<br/>
+        
+            &copy; Copyright 2020, 2i2c.org.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
