@@ -25,8 +25,8 @@
     href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
@@ -38,7 +38,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
-    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Incident reports" href="incidents/index.html" />
@@ -65,15 +65,12 @@
   <h1 class="site-logo" id="site-title">2i2c Pilot Hubs Infrastructure  documentation</h1>
   
 </a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form>
-
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="current nav sidenav_l1">
+    <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="configure.html">
    Cluster configuration
@@ -84,16 +81,23 @@
    Operating the hubs
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="incidents/index.html">
    Incident reports
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="incidents/2020-10-28-memory-overload.html">
+     2020-08-28 - Memory overload on WER cluster
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
@@ -122,11 +126,11 @@
             <i class="fas fa-arrow-up"></i>
         </button>
         
-        <div class="dropdown-buttons-trigger">
+        
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -138,8 +142,8 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
+
         <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
@@ -178,15 +182,48 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gain-kubectl-access-to-a-hub">
+  <a class="reference internal nav-link" href="#gain-kubectl-helm-access-to-a-hub">
    Gain
    <code class="docutils literal notranslate">
     <span class="pre">
      kubectl
     </span>
    </code>
+   &amp;
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     helm
+    </span>
+   </code>
    access to a hub
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-access">
+     Project Access
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#commandline-tools-installation">
+     Commandline tools installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#authenticating">
+     Authenticating
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fetch-cluster-credentials">
+     Fetch Cluster credentials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-access-via-google-cloud-shell">
+     (Optional) Access via Google Cloud Shell
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#delete-a-hub">
@@ -212,13 +249,69 @@
   <div class="section" id="operating-the-hubs">
 <h1>Operating the hubs<a class="headerlink" href="#operating-the-hubs" title="Permalink to this headline">¶</a></h1>
 <p>Information about operating the hubs, debugging problems, and performing common actions.</p>
-<div class="section" id="gain-kubectl-access-to-a-hub">
-<h2>Gain <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> access to a hub<a class="headerlink" href="#gain-kubectl-access-to-a-hub" title="Permalink to this headline">¶</a></h2>
-<p>Each of the hubs in the 2i2c Pilot runs on Google Cloud Platform and Kubernetes. To access the Kubernetes deployments (in order to inspect them or make changes), use the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> command line tool.</p>
-<p>In order to get this tool and ensure that it works, first ensure <strong>ensure your Google account is added to the <code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code> hubs project.</strong> If you aren’t sure, ask one of the hub administrators to determine if this is the case.</p>
-<p>Next, go to the Google Cloud Kubernetes configuration page for this project (at the following URL):</p>
-<p><a class="reference external" href="https://console.cloud.google.com/kubernetes/list?project=two-eye-two-see">https://console.cloud.google.com/kubernetes/list?project=two-eye-two-see</a>`</p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Connect</span></code>, as seen in the figure below.</p>
+<div class="section" id="gain-kubectl-helm-access-to-a-hub">
+<h2>Gain <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">helm</span></code> access to a hub<a class="headerlink" href="#gain-kubectl-helm-access-to-a-hub" title="Permalink to this headline">¶</a></h2>
+<p>Each of the hubs in the 2i2c Pilot runs on Google Cloud Platform and Kubernetes.
+To access the Kubernetes objects (in order to inspect them or make changes), use
+the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> command line tool. You can also use <code class="docutils literal notranslate"><span class="pre">helm</span></code> to</p>
+<div class="section" id="project-access">
+<h3>Project Access<a class="headerlink" href="#project-access" title="Permalink to this headline">¶</a></h3>
+<p>First, you’ll need to access the Google Cloud projects on which the hubs run. The most accurate name
+of the project can be gleamed from <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> (under <code class="docutils literal notranslate"><span class="pre">gcp.project</span></code> for each cluster entry). Currently,
+the projects are:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cluster</p></th>
+<th class="head"><p>Project Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>*.pilot.2i2c.cloud</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>*.cloudbank.2i2c.cloud</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cb-1003-1696</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>If you don’t have access to these, please get in touch with 2i2c staff.</p>
+</div>
+<div class="section" id="commandline-tools-installation">
+<h3>Commandline tools installation<a class="headerlink" href="#commandline-tools-installation" title="Permalink to this headline">¶</a></h3>
+<p>You can do all this via <a class="reference external" href="https://cloud.google.com/shell">Google Cloud Shell</a>,
+but might be easier to do this on your local machine. You’ll need the following
+tools installed:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://cloud.google.com/sdk">gcloud</a></p></li>
+<li><p><a class="reference external" href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a></p></li>
+<li><p><a class="reference external" href="https://helm.sh/">helm</a></p></li>
+</ol>
+</div>
+<div class="section" id="authenticating">
+<h3>Authenticating<a class="headerlink" href="#authenticating" title="Permalink to this headline">¶</a></h3>
+<p>First, you need to <a class="reference external" href="https://cloud.google.com/sdk/docs/authorizing#authorizing_with_a_user_account">gcloud auth login</a>,
+so you can perform <code class="docutils literal notranslate"><span class="pre">gcloud</span></code> operations. Next, you need to do <a class="reference external" href="https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login">gcloud auth application-default login</a>
+so <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> and <code class="docutils literal notranslate"><span class="pre">helm</span></code> could use your auth credentials.</p>
+</div>
+<div class="section" id="fetch-cluster-credentials">
+<h3>Fetch Cluster credentials<a class="headerlink" href="#fetch-cluster-credentials" title="Permalink to this headline">¶</a></h3>
+<p>For each cluster, you’ll need to fetch credentials at least once with <a class="reference external" href="https://cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials">gcloud container clusters get-credentials</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcloud container clusters get-credentials &lt;cluster-name&gt; --region &lt;region&gt; --project &lt;project-name&gt;
+</pre></div>
+</div>
+<p>You can get authoritative information for <code class="docutils literal notranslate"><span class="pre">&lt;cluster-name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;zone&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;project-name&gt;</span></code> from
+<code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code>.</p>
+<p>With that, <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> and <code class="docutils literal notranslate"><span class="pre">helm</span></code> should now work!</p>
+</div>
+<div class="section" id="optional-access-via-google-cloud-shell">
+<h3>(Optional) Access via Google Cloud Shell<a class="headerlink" href="#optional-access-via-google-cloud-shell" title="Permalink to this headline">¶</a></h3>
+<p>Instead of setting up the tools &amp; authenticating locally, you can do all this via
+<a class="reference external" href="https://cloud.google.com/shell">Google Cloud Shell</a>. It has all the tools installed,
+and the authentication done. Instead of doing <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">container</span> <span class="pre">clusters</span> <span class="pre">get-credentials</span></code>
+yourself, you can instead:</p>
+<ol>
+<li><p>Go to the <a class="reference external" href="https://console.cloud.google.com/kubernetes/list">Google Cloud Kubernetes Engine page</a> (for the appropriate project)</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Connect</span></code>, as seen in the figure below.</p>
 <div class="sphinx-bs container pb-4 docutils">
 <div class="row docutils">
 <div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
@@ -241,14 +334,9 @@
 </div>
 </div>
 </div>
-<p>This will spin up an interactive cloud shell where you have <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> access to the <code class="docutils literal notranslate"><span class="pre">two-eye-two-see</span></code> hub infrastructure.</p>
-<div class="tip admonition">
-<p class="admonition-title"> Working locally with the CLI</p>
-<p>If you’d like to work locally, you may also install the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> and <code class="docutils literal notranslate"><span class="pre">helm</span></code> CLIs locally. To do so, follow the <a class="reference external" href="https://zero-to-jupyterhub.readthedocs.io/en/latest/kubernetes/google/step-zero-gcp.html#kubernetes-on-google-cloud-gke">steps from the Z2JH guide</a> (begin with “choose a terminal”). When that is done, copy and run the “Command-line access” command that is shown on the “Connect to the cluster” page. It is something like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcloud</span> <span class="n">container</span> <span class="n">clusters</span> <span class="n">get</span><span class="o">-</span><span class="n">credentials</span> <span class="n">low</span><span class="o">-</span><span class="n">touch</span><span class="o">-</span><span class="n">hubs</span><span class="o">-</span><span class="n">cluster</span> <span class="o">--</span><span class="n">region</span> <span class="n">us</span><span class="o">-</span><span class="n">central1</span> <span class="o">--</span><span class="n">project</span> <span class="n">two</span><span class="o">-</span><span class="n">eye</span><span class="o">-</span><span class="n">two</span><span class="o">-</span><span class="n">see</span>
-</pre></div>
-</div>
-<p>You may need to authenticate your local CLI with Google Cloud first with <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">auth</span> <span class="pre">login</span></code>.</p>
+</li>
+<li><p>This will spin up an interactive cloud shell where you have <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> access.</p></li>
+</ol>
 </div>
 </div>
 <div class="section" id="delete-a-hub">
