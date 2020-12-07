@@ -192,6 +192,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hub-templates">
+   Hub templates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#configuring-each-jupyterhub">
    Configuring each JupyterHub
   </a>
@@ -266,6 +271,37 @@ can be passed here. Most common is auth setup, memory / CPU restrictions,
 and max number of active users. See <a class="reference internal" href="#config-jupyterhub"><span class="std std-ref">Configuring each JupyterHub</span></a> for more info.</p>
 </dd>
 </dl>
+</div>
+<div class="section" id="hub-templates">
+<h2>Hub templates<a class="headerlink" href="#hub-templates" title="Permalink to this headline">¶</a></h2>
+<p>The hubs are configured and deployed using <em>hub templates</em>. Because each hub
+type can be described by a template, with its own deployment chart, a hierarchy
+of hub types can be built and this makes development and usage easier.</p>
+<p>Currently there are two hub templates available:</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">base-hub</span></code> template</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">ephemeral-hub</span></code> template</p></li>
+</ul>
+<p>For example, the <strong>ephemeral hub</strong> is a special kind of hub that is built using the <em>ephemeral-hub template</em>
+and has the following features:</p>
+<ul class="simple">
+<li><p>Temporary, transient binder-style hub</p></li>
+<li><p>No authentication</p></li>
+<li><p>Resource limitations:</p>
+<ul>
+<li><p>memory / CPU limits</p></li>
+<li><p>maximum number of concurrent user servers</p></li>
+</ul>
+</li>
+<li><p>More aggressive culling</p></li>
+<li><p>No persistent storage</p></li>
+<li><p>No home page template</p></li>
+</ul>
+<p>The graphic below, shows the relationship between the hub templates and the other
+config files and how they are merged together when deploying a JupyterHub.</p>
+<div class="figure align-default">
+<img alt="_images/config-flow.png" src="_images/config-flow.png" />
+</div>
 </div>
 <div class="section" id="configuring-each-jupyterhub">
 <span id="config-jupyterhub"></span><h2>Configuring each JupyterHub<a class="headerlink" href="#configuring-each-jupyterhub" title="Permalink to this headline">¶</a></h2>
