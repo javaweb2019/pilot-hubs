@@ -230,6 +230,11 @@
    Configuring the hub login page
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-static-web-content-with-the-hub">
+   Connecting static web content with the hub
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -453,6 +458,35 @@ with the new image</p></li>
 <p>For an example, see <a class="reference external" href="https://staging.pilot.2i2c.cloud/hub/login">the log-in page of the staging hub</a>.</p>
 <p>The log-in pages are built with <a class="reference external" href="https://github.com/2i2c-org/pilot-homepage">the base template at this repository</a>. Values are inserted into each template based on each hub configuration.</p>
 <p>You may customize the configuration for a hub’s homepage at <code class="docutils literal notranslate"><span class="pre">config.jupyterhub.homepage.templateVars</span></code>. Changing these values for a hub will make that hub’s landing page update automatically. We recommend <a class="reference external" href="https://github.com/2i2c-org/pilot-hubs/blob/master/hubs.yaml">using the <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> file as a reference</a>. Copy the configuration from another hub, and then modify the contents to fit the new hub that is being configured.</p>
+</div>
+<div class="section" id="connecting-static-web-content-with-the-hub">
+<h2>Connecting static web content with the hub<a class="headerlink" href="#connecting-static-web-content-with-the-hub" title="Permalink to this headline">¶</a></h2>
+<p>The 2i2c hubs can be configured to provide static web content as a <a class="reference external" href="https://jupyterhub.readthedocs.io/en/stable/reference/services.html">JupyterHub service</a>, available
+at <code class="docutils literal notranslate"><span class="pre">https://&lt;hub-address&gt;/services/docs</span></code>. This can be a great tool to provide hub-specific documentation right from inside the hub.</p>
+<div class="figure align-default">
+<img alt="_images/docs-service.png" src="_images/docs-service.png" />
+</div>
+<p>To enable the docs service service for a hub:</p>
+<ol class="simple">
+<li><p>Mark it as <em>enabled</em> in <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code>, by setting <code class="docutils literal notranslate"><span class="pre">hubs.&lt;hub&gt;.config.docs_service.enabled</span></code> to <em>True</em>.</p></li>
+<li><p>Specify the GitHub repository where the static HTML files are hosted, by setting <code class="docutils literal notranslate"><span class="pre">hubs.&lt;hub&gt;.config.docs_service.repo</span></code>.</p></li>
+<li><p>Specify the GitHub branch of the respository where the static HTML files are hosted, by setting <code class="docutils literal notranslate"><span class="pre">hubs.&lt;hub&gt;.config.docs_service.branch</span></code>.</p></li>
+</ol>
+<p>Example config:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span>  <span class="nt">config</span><span class="p">:</span>
+    <span class="nt">docs_service</span><span class="p">:</span>
+      <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/&lt;static-web-files-repo-name&gt;</span>
+      <span class="nt">branch</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;branch&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on what Static Site Generator has been used to generate the website’s static content, it <strong>may</strong> or <strong>may not</strong> use relative paths routing by default.
+For example, <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> handles relative paths by default, whereas, <a class="reference external" href="https://gohugo.io/">Hugo</a> leaves all <a class="reference external" href="https://gohugo.io/content-management/urls/#relative-urls">relative URLs unchanged</a>.</p>
+<p>However, having relative URLS is a <strong>must</strong> in order for the hub docs service to work. Please check with the docs of your SSG of choice and enable relative URLs if they
+aren’t enabled already.</p>
+</div>
 </div>
 </div>
 
