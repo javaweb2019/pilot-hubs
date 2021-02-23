@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
   <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
@@ -186,6 +185,16 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#team-process-for-hub-development-and-operation">
+   Team process for hub development and operation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-a-new-hub">
+   Adding a new hub
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gain-kubectl-helm-access-to-a-hub">
    Gain
    <code class="docutils literal notranslate">
@@ -253,11 +262,24 @@
   <div class="section" id="operating-the-hubs">
 <h1>Operating the hubs<a class="headerlink" href="#operating-the-hubs" title="Permalink to this headline">¶</a></h1>
 <p>Information about operating the hubs, debugging problems, and performing common actions.</p>
+<div class="section" id="team-process-for-hub-development-and-operation">
+<span id="operate-team-process"></span><h2>Team process for hub development and operation<a class="headerlink" href="#team-process-for-hub-development-and-operation" title="Permalink to this headline">¶</a></h2>
+<p>See the <a class="reference external" href="tc:coordination:team-activity"></a></p>
+</div>
+<div class="section" id="adding-a-new-hub">
+<h2>Adding a new hub<a class="headerlink" href="#adding-a-new-hub" title="Permalink to this headline">¶</a></h2>
+<p>Adding a new hub requires that we do three things:</p>
+<ol class="simple">
+<li><p><a class="reference external" href="https://github.com/2i2c-org/pilot-hubs/issues/new">Create a new GitHub issue for the hub</a>.</p></li>
+<li><p>Create the hub via appending a new entry in the <code class="docutils literal notranslate"><span class="pre">hubs.yaml</span></code> file (see <a class="reference internal" href="configure.html"><span class="doc std std-doc">Cluster configuration</span></a> for more information).</p></li>
+<li><p>Start following <a class="reference external" href="operate:team-process">team process</a> around operating the hubs.</p></li>
+</ol>
+</div>
 <div class="section" id="gain-kubectl-helm-access-to-a-hub">
 <h2>Gain <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">helm</span></code> access to a hub<a class="headerlink" href="#gain-kubectl-helm-access-to-a-hub" title="Permalink to this headline">¶</a></h2>
 <p>Each of the hubs in the 2i2c Pilot runs on Google Cloud Platform and Kubernetes.
 To access the Kubernetes objects (in order to inspect them or make changes), use
-the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> command line tool. You can also use <code class="docutils literal notranslate"><span class="pre">helm</span></code> to</p>
+the <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> command line tool.</p>
 <div class="section" id="project-access">
 <h3>Project Access<a class="headerlink" href="#project-access" title="Permalink to this headline">¶</a></h3>
 <p>First, you’ll need to access the Google Cloud projects on which the hubs run. The most accurate name
